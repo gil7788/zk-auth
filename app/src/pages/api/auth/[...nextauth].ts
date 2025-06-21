@@ -19,22 +19,45 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
+  // callbacks: {
+  //   async jwt({ token, account }) {
+  //     // Persist the access token in the token object
+  //     if (account) {
+  //       token.accessToken = account.access_token;
+  //       token.provider = account.provider;
+  //     }
+  //     return token;
+  //   },
+  //   async session({ session, token }) {
+  //     // Add accessToken to session
+  //     session.accessToken = token.accessToken;
+  //     session.provider = token.provider;
+  //     return session;
+  //   },
+  // },
+
+  // [TODO] Delete as it is used in debug mode, uncomment section above
   callbacks: {
-    async jwt({ token, account }) {
-      // Persist the access token in the token object
-      if (account) {
-        token.accessToken = account.access_token;
-        token.provider = account.provider;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      // Add accessToken to session
-      session.accessToken = token.accessToken;
-      session.provider = token.provider;
-      return session;
-    },
+  async jwt(params) {
+    console.log('[JWT Callback]');
+    console.log(JSON.stringify(params, null, 2));
+    const { token, account } = params;
+
+    // Persist the access token and provider
+    if (account) {
+      token.accessToken = account.access_token;
+      token.provider = account.provider;
+    }
+
+    return token;
   },
+  async session({ session, token }) {
+    session.accessToken = token.accessToken;
+    session.provider = token.provider;
+    return session;
+  },
+},
+
 };
 
 export default NextAuth(authOptions);
