@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+// import { readHelloWorld } from "@/hooks/useVerifyJWT";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -117,6 +118,7 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+        {/* <p>{readHelloWorld.toString()}</p> */}
       </footer>
     </div>
   );

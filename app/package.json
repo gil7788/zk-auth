@@ -9,16 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aztec/accounts": "^0.87.9",
+    "@aztec/aztec.js": "^0.87.9",
+    "@aztec/noir-contracts.js": "^0.87.9",
+    "@aztec/protocol-contracts": "^0.87.9",
+    "@aztec/pxe": "^0.87.9",
+    "@aztec/stdlib": "^0.87.9",
+    "assert": "^2.1.0",
+    "buffer": "^6.0.3",
     "jsonwebtoken": "^9.0.2",
     "next": "15.3.4",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^24.0.3",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
