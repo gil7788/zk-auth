@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession, signOut, signIn } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ProviderCard from '@/components/ProviderCard';
@@ -17,6 +17,15 @@ export default function ProtectedPage() {
   const [storedProviders, setStoredProviders] = useState<
     Record<string, { user: any; token: string }>
   >({});
+
+  const providers = [
+    { name: 'Google', key: 'google', icon: '/google.svg' },
+    { name: 'Discord', key: 'discord', icon: '/discord.svg' },
+    { name: 'GitHub', key: 'github', icon: '/github.svg' },
+    { name: 'LinkedIn', key: 'linkedin', icon: '/linkedin.svg' },
+    { name: 'Facebook', key: 'facebook', icon: '/facebook.svg' },
+    { name: 'Apple', key: 'apple', icon: '/apple.svg' },
+  ];
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -55,11 +64,6 @@ export default function ProtectedPage() {
     return <p className="text-center mt-10">Loading...</p>;
   }
 
-  const providers = [
-    { name: 'Google', key: 'google', icon: '/google.svg' },
-    { name: 'Discord', key: 'discord', icon: '/discord.svg' },
-  ];
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-8">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-center">
@@ -83,10 +87,11 @@ export default function ProtectedPage() {
             setStoredProviders({});
             signOut();
           }}
-          className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm h-10 px-5 w-full"
+          className="w-full rounded-full border border-transparent transition-colors flex items-center justify-center bg-black text-white gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
         >
           Sign out
         </button>
+
       </div>
     </div>
   );
